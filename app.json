@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/word/word",
+    "pages/complete/complete"
+  ],
+  "window": {
+    "navigationBarTitleText": "智能背单词",
+    "backgroundTextStyle": "dark"
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,31 @@
+<view class="container">
+  <view wx:if="{{finished}}" class="empty-state">
+    <text class="empty-title">🎉 所有单词已学完！</text>
+    <button type="primary" bindtap="backHome">返回首页</button>
+  </view>
+
+  <view wx:else>
+    <view class="card-container">
+      <view class="card {{flipped ? 'flip' : ''}}" bindtap="flipCard">
+        <!-- 正面：单词 -->
+        <view class="front">
+          <text class="word">{{currentWord.word}}</text>
+          <text class="phonetic">{{currentWord.phonetic || ''}}</text>
+        </view>
+
+        <!-- 背面：解释 + 例句 -->
+        <view class="back">
+          <text class="meaning">{{currentWord.meaning}}</text>
+          <text class="type" wx:if="{{currentWord.type}}">{{currentWord.type}}</text>
+          <text class="sentence" wx:if="{{currentWord.sentence}}">{{currentWord.sentence}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="btn-group">
+      <button class="btn red" bindtap="rateAgain">遗忘</button>
+      <button class="btn yellow" bindtap="rateHard">模糊</button>
+      <button class="btn green" bindtap="rateGood">认识</button>
+    </view>
+  </view>
+</view>

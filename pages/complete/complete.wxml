@@ -1,0 +1,5 @@
+<view class="wrap">
+  <view class="title">🎉 今日学习完成</view>
+  <view class="desc">本次学习 {{count}} 个单词</view>
+  <button type="primary" bindtap="back">返回首页</button>
+</view>

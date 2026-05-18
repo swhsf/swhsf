@@ -1,0 +1,9 @@
+.container { padding: 30rpx; }
+.loading { text-align: center; padding: 100rpx 0; font-size: 30rpx; }
+.card { background: #fff; border-radius: 24rpx; padding: 30rpx; margin-bottom: 20rpx; }
+.title { font-size: 28rpx; color: #666; }
+.value { font-size: 36rpx; font-weight: bold; margin-top: 10rpx; }
+.edit-btn { margin-top: 15rpx; }
+.item { display: flex; justify-content: space-between; padding: 10rpx 0; font-size: 30rpx; }
+.num { font-weight: bold; }
+.start { margin-top: 40rpx; border-radius: 16rpx; }

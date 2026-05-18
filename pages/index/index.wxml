@@ -1,0 +1,28 @@
+<view class="container">
+  <view class="loading" wx:if="{{loading}}">加载中...</view>
+
+  <view wx:else>
+    <view class="card">
+      <view class="title">今日计划</view>
+      <view class="value">{{dailyGoal}} 个</view>
+      <button size="mini" class="edit-btn" bindtap="setGoal">修改</button>
+    </view>
+
+    <view class="card">
+      <view class="item">
+        <text>需复习</text>
+        <text class="num">{{reviewCount}}</text>
+      </view>
+      <view class="item">
+        <text>可学新词</text>
+        <text class="num">{{newCount}}</text>
+      </view>
+      <view class="item">
+        <text>已学单词</text>
+        <text class="num">{{totalLearned}}</text>
+      </view>
+    </view>
+
+    <button type="primary" class="start" bindtap="startStudy">开始背单词</button>
+  </view>
+</view>

@@ -1,0 +1,14 @@
+*.log
+*.key
+private.*
+*.xml
+!.eslintrc.xml
+.idea/
+/node_modules/
+/miniprogram_node_modules/
+/unpackage/
+.DS_Store
+*.swp
+*.bak
+.project
+.settings
