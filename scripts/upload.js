@@ -13,8 +13,8 @@ async function upload() {
   try {
     const result = await ci.upload({
       project,
-      version: '1.0.1',
-      desc: '修复云环境ID配置',
+      version: '1.0.2',
+      desc: '修复基础库版本配置',
       setting: {
         es6: true,
         es7: true,
