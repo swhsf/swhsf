@@ -71,6 +71,27 @@
   line-height: 1.6;
 }
 
+.speak-btn {
+  margin-top: 24rpx;
+  padding: 12rpx 30rpx;
+  background: #f0f5ff;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  color: #1890ff;
+  display: inline-block;
+}
+
+.speak-btn.speaking {
+  background: #e6f7ff;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
 .btn-group {
   display: flex;
   gap: 20rpx;

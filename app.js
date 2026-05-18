@@ -25,6 +25,8 @@ App({
   globalData: {
     openid: null,
     dailyGoal: 20,
-    finishedToday: 0
+    finishedToday: 0,
+    selectedTextbook: '',
+    selectedUnit: ''
   }
 })

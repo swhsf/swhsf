@@ -11,6 +11,9 @@
         <view class="front">
           <text class="word">{{currentWord.word}}</text>
           <text class="phonetic">{{currentWord.phonetic || ''}}</text>
+          <view class="speak-btn {{isSpeaking ? 'speaking' : ''}}" bindtap="speakWord" catchtap>
+            <text>{{isSpeaking ? '🔊' : '🔈'}} 点击跟读</text>
+          </view>
         </view>
 
         <!-- 背面：解释 + 例句 -->
@@ -18,6 +21,9 @@
           <text class="meaning">{{currentWord.meaning}}</text>
           <text class="type" wx:if="{{currentWord.type}}">{{currentWord.type}}</text>
           <text class="sentence" wx:if="{{currentWord.sentence}}">{{currentWord.sentence}}</text>
+          <view class="speak-btn {{isSpeaking ? 'speaking' : ''}}" bindtap="speakWord" catchtap>
+            <text>{{isSpeaking ? '🔊' : '🔈'}} 点击跟读</text>
+          </view>
         </view>
       </view>
     </view>

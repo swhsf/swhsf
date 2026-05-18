@@ -1,0 +1,40 @@
+<view class="container">
+  <view class="header">
+    <text class="title">选择教材与单元</text>
+    <text class="subtitle">当前：{{selectedTextbook}} - {{selectedUnit}}</text>
+  </view>
+
+  <view class="section">
+    <view class="section-title">📚 选择教材</view>
+    <scroll-view scroll-y class="list">
+      <view
+        class="item {{selectedTextbook === name ? 'active' : ''}}"
+        wx:for="{{textbookNames}}"
+        wx:key="index"
+        data-name="{{item}}"
+        bindtap="selectTextbook"
+      >
+        <text>{{item}}</text>
+        <text class="check" wx:if="{{selectedTextbook === name}}">✓</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">📖 选择单元</view>
+    <scroll-view scroll-y class="list">
+      <view
+        class="item {{selectedUnit === unit ? 'active' : ''}}"
+        wx:for="{{units}}"
+        wx:key="index"
+        data-unit="{{item}}"
+        bindtap="selectUnit"
+      >
+        <text>{{item}}</text>
+        <text class="check" wx:if="{{selectedUnit === unit}}">✓</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <button type="primary" class="confirm-btn" bindtap="confirm">确认选择</button>
+</view>

@@ -7,3 +7,38 @@
 .item { display: flex; justify-content: space-between; padding: 10rpx 0; font-size: 30rpx; }
 .num { font-weight: bold; }
 .start { margin-top: 40rpx; border-radius: 16rpx; }
+
+.textbook-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+}
+
+.textbook-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.textbook-label {
+  font-size: 24rpx;
+  opacity: 0.9;
+}
+
+.textbook-name {
+  font-size: 34rpx;
+  font-weight: bold;
+  margin-top: 8rpx;
+}
+
+.textbook-unit {
+  font-size: 28rpx;
+  margin-top: 4rpx;
+  opacity: 0.9;
+}
+
+.arrow {
+  font-size: 50rpx;
+  opacity: 0.8;
+}

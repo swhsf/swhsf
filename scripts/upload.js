@@ -6,7 +6,7 @@ const project = new ci.Project({
   type: 'miniProgram',
   projectPath: path.resolve(__dirname, '..'),
   privateKeyPath: path.resolve(__dirname, '..', 'private.wx67a2139e59a01586.key'),
-  ignores: ['node_modules/**/*'],
+  ignores: ['node_modules/**/*', 'cloudfunctions/**/*'],
 });
 
 async function upload() {

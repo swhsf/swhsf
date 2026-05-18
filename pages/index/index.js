@@ -8,12 +8,18 @@ Page({
     reviewCount: 0,
     newCount: 0,
     totalLearned: 0,
-    retryCount: 0
+    retryCount: 0,
+    selectedTextbook: '',
+    selectedUnit: ''
   },
 
   onShow() {
     this.data.retryCount = 0
     this.loadData()
+    this.setData({
+      selectedTextbook: app.globalData.selectedTextbook || '未选择',
+      selectedUnit: app.globalData.selectedUnit || '未选择'
+    })
   },
 
   async loadData() {
@@ -96,7 +102,15 @@ Page({
     })
   },
 
+  goSelect() {
+    wx.navigateTo({ url: '/pages/select/select' })
+  },
+
   startStudy() {
+    if (!app.globalData.selectedTextbook || !app.globalData.selectedUnit) {
+      wx.showToast({ title: '请先选择教材和单元', icon: 'none' })
+      return
+    }
     wx.navigateTo({ url: '/pages/word/word' })
   }
 })

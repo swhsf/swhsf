@@ -2,6 +2,15 @@
   <view class="loading" wx:if="{{loading}}">加载中...</view>
 
   <view wx:else>
+    <view class="card textbook-card" bindtap="goSelect">
+      <view class="textbook-info">
+        <text class="textbook-label">📚 当前教材</text>
+        <text class="textbook-name">{{selectedTextbook || '未选择'}}</text>
+        <text class="textbook-unit">{{selectedUnit || '未选择'}}</text>
+      </view>
+      <text class="arrow">›</text>
+    </view>
+
     <view class="card">
       <view class="title">今日计划</view>
       <view class="value">{{dailyGoal}} 个</view>

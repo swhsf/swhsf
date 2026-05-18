@@ -1,22 +1,92 @@
 const { FSRS, State, Rating } = require('../../lib/fsrs.js');
-const wordList = require('../../data/wordList.js');
+const textbooks = require('../../data/textbooks.js');
 const db = wx.cloud.database();
 const app = getApp();
 
+// 语音合成管理器
+const audioManager = {
+  innerAudioContext: null,
+  isPlaying: false,
+
+  init() {
+    if (!this.innerAudioContext) {
+      this.innerAudioContext = wx.createInnerAudioContext();
+    }
+  },
+
+  // 使用 Web Speech API 风格的语音合成（通过微信语音接口）
+  speak(text, lang = 'en-US') {
+    this.init();
+    // 使用微信的语音合成能力
+    wx.playVoice({
+      filePath: '', // 这里使用 TTS 服务
+      success: () => {
+        console.log('播放成功');
+      },
+      fail: (err) => {
+        console.log('语音播放失败，使用备用方案', err);
+        // 备用：使用系统 TTS
+        this.speakFallback(text);
+      }
+    });
+  },
+
+  speakFallback(text) {
+    // 由于微信小程序限制，使用长按复制到系统剪贴板提示
+    wx.showToast({
+      title: '已复制单词，可长按搜索发音',
+      icon: 'none',
+      duration: 2000
+    });
+  },
+
+  // 使用百度/腾讯等免费 TTS API 的替代方案
+  speakWithApi(word) {
+    // 使用在线 TTS 服务
+    const ttsUrl = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(word)}&type=0`;
+    this.init();
+    this.innerAudioContext.src = ttsUrl;
+    this.innerAudioContext.play();
+    this.innerAudioContext.onError((err) => {
+      console.log('TTS播放失败', err);
+      this.speakFallback(word);
+    });
+  }
+};
+
 Page({
   data: {
-    words: wordList,
+    words: [],
     currentWord: null,
     currentIndex: -1,
     wordStates: {},
     flipped: false,
     todayCount: 0,
     finished: false,
-    cycleCount: 0
+    cycleCount: 0,
+    isSpeaking: false,
+    showPhonetic: true
   },
 
   onLoad() {
     this.fsrs = new FSRS();
+    this.loadWords();
+  },
+
+  loadWords() {
+    const textbook = app.globalData.selectedTextbook;
+    const unit = app.globalData.selectedUnit;
+    
+    if (!textbook || !unit || !textbooks[textbook] || !textbooks[textbook][unit]) {
+      wx.showToast({ title: '请先选择教材和单元', icon: 'none' });
+      setTimeout(() => {
+        wx.navigateBack();
+      }, 1500);
+      return;
+    }
+
+    const words = textbooks[textbook][unit];
+    this.setData({ words });
     this.initFromCloud();
   },
 
@@ -104,6 +174,32 @@ Page({
       currentIndex: newIndex,
       currentWord: word,
       flipped: false
+    });
+  },
+
+  // 跟读功能：播放单词发音
+  speakWord() {
+    const { currentWord } = this.data;
+    if (!currentWord) return;
+    
+    this.setData({ isSpeaking: true });
+    
+    // 使用有道词典的 TTS 接口
+    const ttsUrl = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(currentWord.word)}&type=0`;
+    const audioContext = wx.createInnerAudioContext();
+    audioContext.src = ttsUrl;
+    audioContext.play();
+    
+    audioContext.onEnded(() => {
+      this.setData({ isSpeaking: false });
+      audioContext.destroy();
+    });
+    
+    audioContext.onError((err) => {
+      console.log('发音播放失败', err);
+      this.setData({ isSpeaking: false });
+      wx.showToast({ title: '发音加载失败', icon: 'none' });
+      audioContext.destroy();
     });
   },
 
