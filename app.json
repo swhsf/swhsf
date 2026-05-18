@@ -6,7 +6,7 @@
     "pages/complete/complete"
   ],
   "window": {
-    "navigationBarTitleText": "智能背单词",
+    "navigationBarTitleText": "单词巧来记",
     "backgroundTextStyle": "dark"
   },
   "sitemapLocation": "sitemap.json"
