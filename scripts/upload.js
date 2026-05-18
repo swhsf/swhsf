@@ -13,8 +13,8 @@ async function upload() {
   try {
     const result = await ci.upload({
       project,
-      version: '1.0.0',
-      desc: '首次发布 - 智能背单词小程序',
+      version: '1.0.1',
+      desc: '修复云环境ID配置',
       setting: {
         es6: true,
         es7: true,

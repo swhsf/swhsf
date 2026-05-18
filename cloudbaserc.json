@@ -1,0 +1,12 @@
+{
+  "envId": "swhsf-d8g539ibg10c305a9",
+  "functionRoot": "cloudfunctions",
+  "functions": [
+    {
+      "name": "login",
+      "timeout": 5,
+      "envVariables": {},
+      "runtime": "Nodejs12.16"
+    }
+  ]
+}
