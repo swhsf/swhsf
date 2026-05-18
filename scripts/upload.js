@@ -13,8 +13,8 @@ async function upload() {
   try {
     const result = await ci.upload({
       project,
-      version: '1.1.0',
-      desc: '新增教材/单元选择 + 跟读功能',
+      version: '1.1.1',
+      desc: '修复页面路径配置 + 改名单词巧来记',
       setting: {
         es6: true,
         es7: true,
